@@ -15,12 +15,46 @@ import ManageMovies from './pages/ManageMovies';
 
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     primary: {
-      main: '#1976d2',
+      main: '#8B5CF6',      // Purple
+      light: '#A78BFA',
+      dark: '#6D28D9',
     },
     secondary: {
-      main: '#dc004e',
+      main: '#EC4899',      // Pink accent
+      light: '#F472B6',
+      dark: '#BE185D',
+    },
+    background: {
+      default: '#0F0F1E',   // Dark Navy
+      paper: '#1A1A2E',     // Darker Navy
+    },
+    text: {
+      primary: '#FFFFFF',
+      secondary: '#D1D5DB',
+    },
+  },
+  typography: {
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          textTransform: 'none',
+          fontWeight: 600,
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 12,
+          boxShadow: '0 4px 6px -1px rgba(139, 92, 246, 0.1), 0 2px 4px -1px rgba(139, 92, 246, 0.06)',
+        },
+      },
     },
   },
 });
