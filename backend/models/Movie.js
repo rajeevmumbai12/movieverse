@@ -64,9 +64,13 @@ movieSchema.pre('save', function(next) {
   next();
 });
 
-// Create indexes for search and sorting
+// Create indexes for search and sorting - PERFORMANCE OPTIMIZATION
 movieSchema.index({ title: 'text', description: 'text' });
 movieSchema.index({ rating: -1 });
 movieSchema.index({ releaseDate: -1 });
+movieSchema.index({ duration: 1 });
+movieSchema.index({ createdAt: -1 });
+movieSchema.index({ title: 1, rating: -1 }); // Compound index for sorting
+movieSchema.index({ genre: 1 }); // For genre filtering
 
 module.exports = mongoose.model('Movie', movieSchema);

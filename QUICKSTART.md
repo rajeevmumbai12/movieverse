@@ -1,5 +1,48 @@
 # Quick Start Guide - MovieVerse
 
+## Prerequisites
+
+### 1. Install Node.js (if not already installed)
+**Download from:** [https://nodejs.org/](https://nodejs.org/) (v14 or higher)
+
+**Verify installation:**
+```bash
+node --version
+npm --version
+```
+
+### 2. Install MongoDB (if not already installed)
+
+**Windows:**
+```bash
+# Using Chocolatey
+choco install mongodb
+
+# Or download installer from:
+# https://www.mongodb.com/try/download/community
+```
+
+**macOS:**
+```bash
+brew tap mongodb/brew
+brew install mongodb-community
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
+
+**Verify Installation:**
+```bash
+mongod --version
+```
+
+---
+
 ## Fast Setup (5 minutes)
 
 ### Step 1: Install Backend Dependencies
@@ -14,16 +57,44 @@ Make sure MongoDB is running on your system:
 # If using local MongoDB
 mongod
 
-# If using MongoDB Atlas, just update the MONGODB_URI in backend/.env
+### Step 2: Configure Environment Variables
+
+**Backend:**
+```bash
+cd backend
+cp .env.example .env
+
+# Windows (PowerShell): copy .env.example .env
+```
+The `.env` file is already configured for local development. Only update if needed:
+- Change `MONGODB_URI` if using MongoDB Atlas
+- Set `ENABLE_QUEUE=true` if you installed Redis
+
+**Frontend:**
+```bash
+cd ../frontend
+cp .env.example .env
+
+# Windows (PowerShell): copy .env.example .env
 ```
 
-### Step 3: Seed the Database (Optional)
+### Step 3: Start MongoDB
+Make sure MongoDB is running on your system:
+```bash
+# If using local MongoDB
+mongod
+
+# If using MongoDB Atlas, just ensure MONGODB_URI is updated in backend/.env
+```
+
+### Step 4: Seed the Database (Optional)
 Add sample movies to get started quickly:
 ```bash
+cd backend
 npm run seed
 ```
 
-### Step 4: Start Backend Server
+### Step 5: Start Backend Server
 ```bash
 # Development mode with auto-reload
 npm run dev
@@ -33,14 +104,14 @@ npm start
 ```
 Backend runs on: http://localhost:5000
 
-### Step 5: Install Frontend Dependencies
+### Step 6: Install Frontend Dependencies
 Open a new terminal:
 ```bash
 cd frontend
 npm install
 ```
 
-### Step 6: Start Frontend
+### Step 7: Start Frontend
 ```bash
 npm start
 ```
@@ -105,12 +176,50 @@ MONGODB_URI=mongodb://localhost:27017/movieverse
 JWT_SECRET=your_jwt_secret_key_here_change_in_production
 JWT_EXPIRE=7d
 NODE_ENV=development
+
+# Optional: Redis Queue System (for async job processing)
+ENABLE_QUEUE=false    # Set to 'true' if Redis is installed
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
 ```
+
+**Note**: Queue system is optional. Set `ENABLE_QUEUE=true` only if you have Redis installed for async movie creation with background processing.
 
 Frontend (.env) - Already configured:
 ```
 REACT_APP_API_URL=http://localhost:5000/api
 ```
+
+## Optional: Redis Setup (For Queue System)
+
+### Install Redis (Optional - for better performance)
+```bash
+# Windows (using Chocolatey)
+choco install redis
+
+# macOS
+brew install redis
+
+# Ubuntu/Debian
+sudo apt-get install redis-server
+```
+
+### Start Redis
+```bash
+redis-server
+```
+
+### Enable Queue in Backend
+Update `backend/.env`:
+```
+ENABLE_QUEUE=true
+```
+
+**Benefits with Redis:**
+- Instant API responses (202 status)
+- Background job processing
+- Automatic retries on failures
+- Better scalability for high traffic
 
 ## Troubleshooting
 

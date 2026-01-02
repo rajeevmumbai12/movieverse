@@ -23,10 +23,13 @@ A full-stack movie web application built with the MERN stack (MongoDB, Express.j
 ### Backend
 - **Node.js**: Runtime environment
 - **Express.js**: Web application framework
-- **MongoDB**: Database
-- **Mongoose**: ODM for MongoDB
+- **MongoDB**: Database with connection pooling
+- **Mongoose**: ODM for MongoDB with optimized indexing
 - **JWT**: Authentication
 - **bcryptjs**: Password hashing
+- **Bull**: Queue system for background job processing
+- **Redis**: Optional - for queue backend and caching
+- **node-cache**: In-memory caching for performance
 
 ### Frontend
 - **React.js**: UI library
@@ -34,13 +37,21 @@ A full-stack movie web application built with the MERN stack (MongoDB, Express.j
 - **React Router**: Navigation
 - **Axios**: HTTP client
 
+### Performance & Scalability
+- **Connection Pooling**: Handles concurrent database connections
+- **Caching**: In-memory cache with 5-minute TTL
+- **Database Indexing**: Optimized queries for search and sort
+- **Queue System**: Background processing for movie creation
+- **Lazy Loading**: Async data insertion with queue fallback
+
 ## Project Structure
 
 ```
 movieverse/
 ├── backend/
 │   ├── config/
-│   │   └── db.js
+│   │   ├── db.js
+│   │   └── cache.js
 │   ├── controllers/
 │   │   ├── authController.js
 │   │   └── movieController.js
@@ -49,13 +60,16 @@ movieverse/
 │   ├── models/
 │   │   ├── User.js
 │   │   └── Movie.js
+│   ├── queues/
+│   │   └── movieQueue.js
 │   ├── routes/
 │   │   ├── auth.js
 │   │   └── movies.js
 │   ├── .env
 │   ├── .gitignore
 │   ├── package.json
-│   └── server.js
+│   ├── server.js
+│   └── seed.js
 └── frontend/
     ├── public/
     │   └── index.html
@@ -88,9 +102,21 @@ movieverse/
 ## Installation & Setup
 
 ### Prerequisites
-- Node.js (v14 or higher)
-- MongoDB (local or Atlas)
-- npm or yarn
+
+#### 1. Node.js (v14 or higher)
+**Download and install from:** [https://nodejs.org/](https://nodejs.org/)
+
+**Verify installation:**
+```bash
+node --version
+npm --version
+```
+
+#### 2. MongoDB (local or Atlas)
+See [Database Setup](#database-setup) section below for installation instructions.
+
+#### 3. Redis (Optional - for queue system)
+See [Queue System](#queue-system-optional) section for installation instructions.
 
 ### Backend Setup
 
@@ -104,12 +130,35 @@ cd backend
 npm install
 ```
 
-3. Configure environment variables:
-   - Open `.env` file
-   - Update MongoDB URI if using MongoDB Atlas or different local setup
-   - Change JWT_SECRET to a secure random string in production
+3. Create environment file:
+```bash
+# Copy the example file
+cp .env.example .env
 
-4. Start the backend server:
+# Windows (PowerShell)
+copy .env.example .env
+
+# Or manually create .env file with these variables:
+```
+
+4. Configure environment variables in `.env`:
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/movieverse
+JWT_SECRET=your_jwt_secret_key_here_change_in_production
+JWT_EXPIRE=7d
+NODE_ENV=development
+
+# Optional: Enable queue system (requires Redis)
+ENABLE_QUEUE=false
+REDIS_HOST=127.0.0.1
+REDIS_PORT=6379
+```
+   - Update `MONGODB_URI` if using MongoDB Atlas or different local setup
+   - Change `JWT_SECRET` to a secure random string in production
+   - Set `ENABLE_QUEUE=true` only if Redis is installed
+
+5. Start the backend server:
 ```bash
 # Development mode with auto-restart
 npm run dev
@@ -132,7 +181,24 @@ cd frontend
 npm install
 ```
 
-3. Start the React development server:
+3. Create environment file:
+```bash
+# Copy the example file
+cp .env.example .env
+
+# Windows (PowerShell)
+copy .env.example .env
+
+# Or manually create .env file with:
+```
+
+4. Configure environment variables in `.env`:
+```env
+REACT_APP_API_URL=http://localhost:5000/api
+```
+   - Update the URL if your backend runs on a different port
+
+5. Start the React development server:
 ```bash
 npm start
 ```
@@ -142,15 +208,50 @@ The frontend application will run on `http://localhost:3000`
 ## Database Setup
 
 ### Local MongoDB
-1. Install MongoDB on your system
-2. Start MongoDB service:
+
+**Installation:**
+
+**Windows:**
 ```bash
-mongod
+# Using Chocolatey
+choco install mongodb
+
+# Or download from: https://www.mongodb.com/try/download/community
 ```
 
-### MongoDB Atlas (Cloud)
+**macOS:**
+```bash
+brew tap mongodb/brew
+brew install mongodb-community
+```
+
+**Linux (Ubuntu/Debian):**
+```bash
+wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
+
+**Start MongoDB:**
+```bash
+# Windows/macOS/Linux
+mongod
+
+# Or as a service (Linux)
+sudo systemctl start mongod
+sudo systemctl enable mongod
+```
+
+**Verify Installation:**
+```bash
+mongod --version
+mongo --version  # MongoDB shell
+```
+
+### MongoDB Atlas (Cloud Alternative)
 1. Create an account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create a new cluster
+2. Create a new cluster (free tier available)
 3. Get your connection string
 4. Update `MONGODB_URI` in backend `.env` file
 
@@ -183,9 +284,10 @@ When registering, select "Admin" role from the dropdown to create an admin accou
 ### Movies
 - `GET /api/movies` - Get all movies (with pagination, search, sort)
 - `GET /api/movies/:id` - Get single movie
-- `POST /api/movies` - Create movie (admin only)
+- `POST /api/movies` - Create movie (admin only, queued if Redis enabled)
 - `PUT /api/movies/:id` - Update movie (admin only)
 - `DELETE /api/movies/:id` - Delete movie (admin only)
+- `GET /api/movies/admin/queue-stats` - View queue statistics (admin only)
 
 ## Features in Detail
 
@@ -222,6 +324,35 @@ When registering, select "Admin" role from the dropdown to create an admin accou
 - Role-based access control
 - Input validation
 - CORS configuration
+
+## Queue System (Optional)
+
+The application supports an optional **Redis-backed queue system** for asynchronous job processing:
+
+### Setup
+1. Install Redis on your system
+2. Start Redis server: `redis-server`
+3. Enable in `backend/.env`:
+   ```
+   ENABLE_QUEUE=true
+   REDIS_HOST=127.0.0.1
+   REDIS_PORT=6379
+   ```
+
+### Features
+- **Instant API responses** - Movie creation returns immediately (HTTP 202)
+- **Background processing** - Database insertions happen asynchronously
+- **Automatic retries** - Failed jobs retry 3 times with exponential backoff
+- **Job monitoring** - View queue stats at `/api/movies/admin/queue-stats`
+- **Graceful fallback** - Works without Redis (direct database insertion)
+
+### Monitoring Queue
+Access queue statistics (admin only):
+```bash
+GET /api/movies/admin/queue-stats
+```
+
+Returns waiting, active, completed, and failed job counts with details.
 
 ## Development
 
