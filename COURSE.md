@@ -5,13 +5,15 @@
 - Anyone who wants to build a real-world MERN app step by step (from scratch, not by cloning)
 
 ### Suggested Timeline
-- **Module 1:** 1-2 days (setup, tools)
-- **Module 2:** 2-3 days (backend basics)
-- **Module 3:** 2-3 days (frontend basics)
-- **Module 4:** 2-3 days (testing with Jest & Supertest)
-- **Module 5:** 2-3 days (advanced features)
-- **Module 6:** 1-2 days (deployment)
-- **Module 7:** Ongoing (best practices, security, debugging, interview prep)
+- **Module 1:** 1-2 days (Setup & Tools)
+- **Module 2:** 2-3 days (Backend Basics)
+- **Module 3:** 2-3 days (Frontend Basics)
+- **Module 4:** 2-3 days (Testing with Jest & Supertest)
+- **Module 5:** 2-3 days (Advanced Backend Features)
+- **Module 6:** 1-2 days (Deployment & DevOps)
+- **Module 7:** 1-2 days (Best Practices, Security & Code Quality)
+- **Module 8:** 1-2 days (Debugging)
+- **Module 9:** Ongoing (Interview Preparation & Portfolio)
 
 *Adjust as needed—go at your own pace!*
 
