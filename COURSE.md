@@ -524,6 +524,9 @@ npm install bull redis
   - Optionally, make a personal website to showcase MovieVerse and other projects.
   - Write a blog post or LinkedIn article about your learning journey and project experience.
 6. **Share and Get Feedback:**
+  - Share your progress and code on GitHub.
+  - Write a blog post or LinkedIn article about your learning journey.
+  - Join dev communities (e.g., freeCodeCamp, DEV.to, Hashnode) to connect, learn, and get feedback.
   - Share your project in developer communities (freeCodeCamp, DEV.to, LinkedIn, etc.).
   - Ask for feedback on your code, design, and resume.
 7. **Prepare for Behavioral Questions:**
@@ -620,15 +623,6 @@ npm install bull redis
 - TypeScript adds static typing to JavaScript for fewer bugs
 - You can migrate your backend or frontend to TypeScript as you advance
 - Learn more: https://www.typescriptlang.org/docs/
-
----
-
-
-## Community & Portfolio
-- Share your progress and code on GitHub
-- Write a blog post or LinkedIn article about your learning journey
-- Add MovieVerse to your portfolio and resume
-- Join dev communities (e.g., freeCodeCamp, DEV.to, Hashnode)
 
 ---
 
