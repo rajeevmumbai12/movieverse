@@ -6,6 +6,51 @@
 
 ---
 
+## Visual Aids & Diagrams
+
+**Folder Structure Example:**
+```text
+movieverse/
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── queues/
+│   ├── routes/
+│   ├── server.js
+│   └── ...
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── context/
+│       ├── pages/
+│       ├── services/
+│       ├── utils/
+│       ├── App.js
+│       └── ...
+├── README.md
+└── ...
+```
+
+**Architecture Diagram:**
+```text
+[Frontend (React)] <----> [Backend (Node.js/Express)] <----> [MongoDB]
+                                         |
+                                         v
+                                 [Redis/Bull Queue]
+```
+
+**Screenshots (add your own):**
+- ![VS Code Example](./screenshots/vscode-example.png)
+- ![Postman API Test](./screenshots/postman-api-test.png)
+- ![Debugging in Chrome DevTools](./screenshots/chrome-devtools-debug.png)
+
+*Tip: Take your own screenshots as you work and save them in a `screenshots/` folder for easy reference!*
+
+---
+
 ## What if You Get Stuck?
 
 If you get stuck on any step:
@@ -67,7 +112,14 @@ This approach will help you learn by doing, while also having a safety net to ke
 - Authentication flows
 - UI libraries (Material-UI)
 
-### 5. **Advanced Backend**
+### 5. **Testing (Jest & Supertest)**
+- Why testing matters
+- Installing Jest (backend & frontend)
+- Writing and running tests
+- Using Supertest for API testing
+- React Testing Library for frontend
+
+### 6. **Advanced Backend**
 - Connection pooling
 - Caching (node-cache)
 - Queue system (Bull + Redis)
@@ -75,7 +127,7 @@ This approach will help you learn by doing, while also having a safety net to ke
 - Bulk operations
 - Security best practices
 
-### 6. **DevOps & Deployment**
+### 7. **DevOps & Deployment**
 - Environment setup
 - Using .env files
 - Deploying frontend (Vercel)
@@ -84,7 +136,16 @@ This approach will help you learn by doing, while also having a safety net to ke
 - Setting up Upstash Redis
 - Domain & SSL setup
 
-### 7. **Interview Preparation**
+### 8. **Best Practices & Security**
+- Clean code habits
+- Backend and frontend security tips
+- Code quality tools
+
+### 9. **Debugging**
+- Debugging tools and extensions
+- Debugging backend and frontend
+
+### 10. **Interview Preparation**
 - Common full stack interview questions
 - System design basics
 - Coding challenges (LeetCode, HackerRank)
@@ -95,10 +156,39 @@ This approach will help you learn by doing, while also having a safety net to ke
 ## Step-by-Step Project Guide
 
 ### **Module 1: Setup & Tools**
-**Install Node.js, MongoDB, Git:**
+**Install Node.js, MongoDB, Redis, Git, VS Code:**
 - Download Node.js: https://nodejs.org/
 - Download MongoDB: https://www.mongodb.com/try/download/community
+- Download Redis:
+  - Windows: https://github.com/tporadowski/redis/releases (download the latest .msi or .zip and follow instructions)
+  - Mac: `brew install redis` (if you use Homebrew)
+  - Linux: Use your package manager, e.g., `sudo apt install redis-server`
 - Download Git: https://git-scm.com/
+- Download Visual Studio Code: https://code.visualstudio.com/
+
+**(Optional) Install Postman:**
+- Download Postman for API testing: https://www.postman.com/downloads/
+
+**Recommended VS Code Extensions:**
+- ESLint (code linting)
+- Prettier (code formatting)
+- GitLens (Git supercharged)
+- Bracket Pair Colorizer 2 (bracket highlighting)
+- Material Icon Theme (file icons)
+- REST Client (test APIs inside VS Code)
+- MongoDB for VS Code (manage MongoDB visually)
+- Thunder Client (lightweight API client)
+
+**Recommended VS Code Extensions for Jest:**
+- Jest (by Orta) — shows test results and inline errors in your editor
+- Jest Runner — run or debug a single test or file with a click
+
+**(Optional) Set Up GitHub Copilot:**
+- Install the GitHub Copilot extension from the VS Code Marketplace
+- Sign in with your GitHub account (requires a Copilot subscription or free trial)
+- Enable Copilot suggestions in your editor
+- Use Copilot to get code completions, explanations, and help as you code
+- Learn more: https://docs.github.com/en/copilot
 
 **Create your own project folder:**
 ```bash
@@ -220,28 +310,78 @@ npm install @mui/material @emotion/react @emotion/styled
 
 ---
 
-### **Module 4: Full CRUD & Auth**
-**Add, edit, delete movies (admin):**
-- Create `backend/models/Movie.js` and CRUD endpoints in `movieController.js`
-- Example create endpoint:
-```javascript
-exports.createMovie = async (req, res) => {
-  // ...existing code...
-};
+### **Module 4: Testing with Jest & Supertest**
+
+**Why Learn Jest?**
+- Jest is a popular JavaScript testing framework.
+- It helps you write and run tests for your backend and frontend code.
+- Testing improves code quality and confidence in your app.
+
+**How to Install Jest (Backend):**
+```bash
+cd backend
+npm install --save-dev jest supertest
+```
+- Add to `package.json`:
+```json
+"scripts": {
+  "test": "jest"
+}
 ```
 
-**Register/login users:**
-- Create registration and login endpoints in `authController.js`
+**Create a Simple Test:**
+- Create `backend/tests/sample.test.js`:
+```javascript
+test('Sample test', () => {
+  expect(1 + 1).toBe(2);
+});
+```
 
-**Protect routes with JWT:**
-- Create `backend/middleware/auth.js` to verify tokens
-- Use `app.use(protect)` for protected routes
+**Run Tests:**
+```bash
+npm test
+```
 
----
+**Jest for Frontend (React) Testing:**
+- Create React App comes with Jest pre-installed!
+- To write a test, create a file like `src/App.test.js`:
+```javascript
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-### **Module 5: Advanced Features**
-**Search, sort, pagination:**
-- Implement query params in movie routes
+test('renders MovieVerse title', () => {
+  render(<App />);
+  expect(screen.getByText(/MovieVerse/i)).toBeInTheDocument();
+});
+```
+- Run tests in the frontend folder:
+```bash
+npm test
+```
+- Learn more: https://testing-library.com/docs/react-testing-library/intro/
+
+**Recommended VS Code Extensions for Jest:**
+- Jest (by Orta) — shows test results and inline errors in your editor
+- Jest Runner — run or debug a single test or file with a click
+
+**Learn More:**
+- Jest Docs: https://jestjs.io/docs/getting-started
+- Supertest (for API testing): https://github.com/ladjs/supertest
+
+*You can also use Jest for frontend (React) testing. See React docs for details!*
+
+### **Module 5: Advanced Backend**
+**Connection pooling:**
+- Modify MongoDB connection in `backend/config/db.js`:
+```javascript
+const connectDB = async () => {
+  const client = await mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  return client;
+};
+```
 
 **Caching for performance:**
 - Install node-cache:
@@ -282,51 +422,211 @@ npm install bull redis
 
 ---
 
-### **Module 7: Interview Prep**
-**Practice coding questions:**
-- Use LeetCode, HackerRank
+### **Module 7: Best Practices & Security**
+**Why It Matters:**
+- Following best practices and security guidelines helps you write clean, maintainable, and safe code—crucial for real-world projects and interviews.
 
-**Review system design:**
-- Study REST API, database design, caching, queues
+### General Best Practices
+- Write clear, descriptive commit messages.
+- Use meaningful variable and function names.
+- Keep functions and files small and focused.
+- Comment your code where logic is complex.
+- Use version control (Git) and push code regularly.
+- Keep dependencies up to date.
 
-**Build your resume & portfolio:**
-- Add MovieVerse project with GitHub link
+### Backend Security Tips
+- Never commit secrets or passwords to Git (use `.env` files).
+- Validate and sanitize all user input to prevent injection attacks.
+- Use HTTPS in production.
+- Hash passwords with bcryptjs before storing.
+- Use JWTs for authentication and verify tokens on protected routes.
+- Set CORS policies to restrict API access.
+- Limit failed login attempts to prevent brute-force attacks.
+- Keep your dependencies updated to avoid known vulnerabilities.
+
+### Frontend Security Tips
+- Never expose sensitive keys or secrets in frontend code.
+- Validate user input on the client side (but always validate again on the server).
+- Use HTTPS for all API requests in production.
+- Avoid using `eval()` or dangerously setting HTML.
+- Keep React and dependencies updated.
+
+### Code Quality Tools
+- Use ESLint and Prettier for consistent code style.
+- Add tests (Jest) for critical logic and APIs.
+- Use TypeScript (optional) for type safety as you advance.
+
+### Learn More
+- [OWASP Top 10 Security Risks](https://owasp.org/www-project-top-ten/)
+- [Node.js Security Best Practices](https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html)
+- [React Security Best Practices](https://react.dev/learn/security)
 
 ---
 
-## Sample .env Templates
+### **Module 8: Debugging**
+**Why Debugging Matters:**
+- Debugging helps you find and fix errors faster, making you a better developer.
 
-### Backend (`backend/.env`)
-```
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
-REDIS_URL=your_redis_url
-PORT=5000
-```
+**VS Code Built-in Debugger:**
+- You can set breakpoints, step through code, and inspect variables for Node.js and React apps.
+- To debug backend (Node.js):
+  1. Open your main server file (e.g., `server.js`).
+  2. Click to the left of a line number to set a breakpoint.
+  3. Press F5 or click the Run & Debug icon in the sidebar.
+  4. Choose "Node.js" and start debugging.
+- To debug frontend (React):
+  1. Use Chrome DevTools (press F12 in your browser).
+  2. Inspect elements, view console logs, and set breakpoints in the "Sources" tab.
+  3. You can also use the "Debugger for Chrome" VS Code extension for advanced debugging.
 
-### Frontend (`frontend/.env`)
-```
-REACT_APP_API_URL=http://localhost:5000/api
-```
+**Helpful Debugging Extensions:**
+- Debugger for Chrome (frontend/React)
+- Node.js Debug (backend)
+- Error Lens (highlights errors and warnings inline)
+
+**General Debugging Tips:**
+- Use `console.log()` to print variable values and trace code flow.
+- Read error messages carefully—they often tell you exactly what’s wrong.
+- Isolate the problem by commenting out code or using breakpoints.
+- Search error messages on Google or Stack Overflow.
+- Don’t be afraid to ask for help if you’re stuck!
 
 ---
 
-## Common Troubleshooting Tips
-- **MongoDB connection error:** Check your `MONGODB_URI` and internet connection.
-- **Redis connection error:** Make sure Redis is running and `REDIS_URL` is correct.
-- **CORS error:** Ensure backend has CORS enabled (`app.use(cors())`).
-- **Port already in use:** Change the `PORT` in `.env` or stop other running servers.
-- **Frontend can't reach backend:** Check API URL in frontend `.env` and backend server status.
+## Frontend (React) Debugging Options for Beginners
+
+**1. Chrome DevTools (No Setup Needed):**
+- Press F12 or right-click and choose "Inspect" in Chrome/Edge.
+- Use the "Console" tab for logs and errors.
+- Use the "Sources" tab to set breakpoints and step through code.
+- Use the "Elements" tab to inspect and edit HTML/CSS live.
+
+**2. React Developer Tools (Browser Extension):**
+- Install for Chrome: https://chrome.google.com/webstore/detail/react-developer-tools/
+- After installing, you’ll see a "React" tab in DevTools to inspect component tree, props, and state.
+
+**3. VS Code Debugger for Chrome/Edge:**
+- Install the "Debugger for Chrome" or "Debugger for Edge" extension in VS Code.
+- Add a `launch.json` file (VS Code may prompt you to do this):
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against localhost",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/frontend/src"
+    }
+  ]
+}
+```
+- Set breakpoints in your React code and press F5 to start debugging.
+
+**4. Useful Extensions:**
+- Error Lens (highlights errors/warnings inline)
+- ESLint (shows code issues as you type)
+- React Developer Tools (browser extension, not VS Code)
+- Debugger for Chrome/Edge (VS Code)
+
+**5. Classic Console.log():**
+- Use `console.log()` in your code to print values and debug logic quickly.
+
+**Tips:**
+- Always check the browser console for errors and warnings.
+- Use breakpoints to pause code and inspect variables.
+- Refresh the page after making code changes to see updates.
 
 ---
 
-## Module Checklists
+## Quick Reference Tables
+
+| Command                | Purpose                        |
+|------------------------|--------------------------------|
+| npm start              | Start the app                  |
+| npm test               | Run tests                      |
+| npm install <package>  | Install a package              |
+| git status             | Check git changes              |
+| git add .              | Stage all changes              |
+| git commit -m "msg"    | Commit changes                 |
+| git push               | Push to remote repo            |
+
+| HTTP Status | Meaning         |
+|-------------|-----------------|
+| 200         | OK              |
+| 201         | Created         |
+| 400         | Bad Request     |
+| 401         | Unauthorized    |
+| 404         | Not Found       |
+| 500         | Server Error    |
+
+---
+
+## Project Milestones
+- ✅ Backend API running and tested with Postman/Thunder Client
+- ✅ Frontend UI loads and fetches data from backend
+- ✅ Authentication (register/login) works
+- ✅ CRUD operations for movies work
+- ✅ Tests pass for backend and frontend
+- ✅ App deployed and accessible online
+
+---
+
+## Accessibility (a11y) Tips
+- Use semantic HTML tags (e.g., <nav>, <main>, <button>)
+- Add alt text to all images
+- Ensure good color contrast for readability
+- Make forms accessible with labels
+- Test navigation with keyboard (Tab key)
+- Learn more: https://web.dev/accessibility/
+
+---
+
+## TypeScript (Optional Advanced Step)
+- TypeScript adds static typing to JavaScript for fewer bugs
+- You can migrate your backend or frontend to TypeScript as you advance
+- Learn more: https://www.typescriptlang.org/docs/
+
+---
+
+## Community & Portfolio
+- Share your progress and code on GitHub
+- Write a blog post or LinkedIn article about your learning journey
+- Add MovieVerse to your portfolio and resume
+- Join dev communities (e.g., freeCodeCamp, DEV.to, Hashnode)
+
+---
+
+## Video Tutorials (per module)
+- [freeCodeCamp Full Stack Course](https://www.youtube.com/watch?v=4Z9KEBexzcM)
+- [Node.js Crash Course](https://www.youtube.com/watch?v=fBNz5xF-Kx4)
+- [React JS Crash Course](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
+- [Jest Testing Crash Course](https://www.youtube.com/watch?v=FgnxcUQ5vho)
+- [MongoDB Tutorial](https://www.youtube.com/watch?v=ofme2o29ngU)
+- [VS Code Debugging Guide](https://www.youtube.com/watch?v=H0XScE08hy8)
+- [Web Accessibility Guide](https://www.youtube.com/watch?v=3f31oufqFSM)
+
+---
+
+## Module Checklists & FAQ
 
 ### After Each Module, Ask Yourself:
 - [ ] Did I run all commands and create all files?
 - [ ] Did I test the feature (API, UI, etc.)?
 - [ ] Did I commit my changes with a clear message?
 - [ ] Did I read and understand the code I wrote?
+
+### Common Issues (FAQ)
+- **Module 1:** Trouble installing Node.js/MongoDB/Redis? Check official docs and YouTube install guides.
+- **Module 2:** API not working? Check server logs, .env, and MongoDB connection.
+- **Module 3:** React app not loading? Check terminal for errors, ensure correct API URL.
+- **Module 4:** Tests failing? Read error messages, check test file paths, and review sample tests.
+- **Module 5:** Queue/caching not working? Check Redis status and config.
+- **Module 6:** Deployment failed? Double-check environment variables and deployment logs.
+- **Module 7:** Security warnings? Update dependencies and review best practices.
+- **Module 8:** Debugging not working? Set breakpoints, use console.log, and check extension setup.
+- **Module 9:** Interview prep? Practice coding daily and review system design basics.
 
 ---
 
@@ -404,9 +704,9 @@ A: Use Vercel (frontend), Render (backend), MongoDB Atlas, and Upstash Redis—a
 - **Module 1:** 1-2 days (setup, tools)
 - **Module 2:** 2-3 days (backend basics)
 - **Module 3:** 2-3 days (frontend basics)
-- **Module 4:** 2-3 days (CRUD & auth)
+- **Module 4:** 2-3 days (testing with Jest & Supertest)
 - **Module 5:** 2-3 days (advanced features)
 - **Module 6:** 1-2 days (deployment)
-- **Module 7:** Ongoing (interview prep)
+- **Module 7:** Ongoing (best practices, security, debugging, interview prep)
 
 *Adjust as needed—go at your own pace!*
