@@ -92,6 +92,30 @@
 - Download Git: https://git-scm.com/
 - Download Visual Studio Code: https://code.visualstudio.com/
 
+**(Optional) Install Postman:**
+- Download Postman for API testing: https://www.postman.com/downloads/
+
+**Recommended VS Code Extensions:**
+- ESLint (code linting)
+- Prettier (code formatting)
+- GitLens (Git supercharged)
+- Bracket Pair Colorizer 2 (bracket highlighting)
+- Material Icon Theme (file icons)
+- REST Client (test APIs inside VS Code)
+- MongoDB for VS Code (manage MongoDB visually)
+- Thunder Client (lightweight API client)
+
+**Recommended VS Code Extensions for Jest:**
+- Jest (by Orta) — shows test results and inline errors in your editor
+- Jest Runner — run or debug a single test or file with a click
+
+**(Optional) Set Up GitHub Copilot:**
+- Install the GitHub Copilot extension from the VS Code Marketplace
+- Sign in with your GitHub account (requires a Copilot subscription or free trial)
+- Enable Copilot suggestions in your editor
+- Use Copilot to get code completions, explanations, and help as you code
+- Learn more: https://docs.github.com/en/copilot
+
 **Folder Structure Example:**
 ```text
 movieverse/
@@ -125,30 +149,6 @@ movieverse/
                                          v
                                  [Redis/Bull Queue]
 ```
-
-**(Optional) Install Postman:**
-- Download Postman for API testing: https://www.postman.com/downloads/
-
-**Recommended VS Code Extensions:**
-- ESLint (code linting)
-- Prettier (code formatting)
-- GitLens (Git supercharged)
-- Bracket Pair Colorizer 2 (bracket highlighting)
-- Material Icon Theme (file icons)
-- REST Client (test APIs inside VS Code)
-- MongoDB for VS Code (manage MongoDB visually)
-- Thunder Client (lightweight API client)
-
-**Recommended VS Code Extensions for Jest:**
-- Jest (by Orta) — shows test results and inline errors in your editor
-- Jest Runner — run or debug a single test or file with a click
-
-**(Optional) Set Up GitHub Copilot:**
-- Install the GitHub Copilot extension from the VS Code Marketplace
-- Sign in with your GitHub account (requires a Copilot subscription or free trial)
-- Enable Copilot suggestions in your editor
-- Use Copilot to get code completions, explanations, and help as you code
-- Learn more: https://docs.github.com/en/copilot
 
 **Create your own project folder:**
 ```bash
