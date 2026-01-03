@@ -6,7 +6,91 @@
 
 ---
 
-## Visual Aids & Diagrams
+## Suggested Timeline
+- **Module 1:** 1-2 days (setup, tools)
+- **Module 2:** 2-3 days (backend basics)
+- **Module 3:** 2-3 days (frontend basics)
+- **Module 4:** 2-3 days (testing with Jest & Supertest)
+- **Module 5:** 2-3 days (advanced features)
+- **Module 6:** 1-2 days (deployment)
+- **Module 7:** Ongoing (best practices, security, debugging, interview prep)
+
+*Adjust as needed—go at your own pace!*
+
+---
+
+## Course Roadmap & Skills
+
+### 1. **Setup & Tools**
+- Install Node.js, MongoDB, Redis, Git, VS Code
+- Project folder structure & Git initialization
+- Backend and frontend folder setup
+- Install dependencies for backend and frontend
+- Create environment files
+
+### 2. **Backend Basics (Node.js & Express)**
+- Set up Express server
+- Create REST API endpoints
+- Connect to MongoDB (Mongoose)
+- Implement authentication (JWT, bcryptjs)
+- Test backend endpoints (Postman/curl)
+
+### 3. **Frontend Basics (React)**
+- Build React app structure (components, pages)
+- Implement routing (React Router)
+- Style with Material-UI
+- API integration with Axios
+
+### 4. **Testing (Jest & Supertest)**
+- Why testing matters
+- Install and configure Jest (backend & frontend)
+- Write and run tests (backend & frontend)
+- Use Supertest for API testing
+- Use React Testing Library for frontend
+
+### 5. **Advanced Backend Features**
+- Connection pooling (MongoDB)
+- Caching (node-cache)
+- Queue system (Bull + Redis)
+- Async job processing
+- Bulk operations (movie import)
+- Security best practices
+
+### 6. **Deployment & DevOps**
+- Deploy frontend (Vercel)
+- Deploy backend (Render)
+- Set up MongoDB Atlas & Upstash Redis
+- Configure environment variables
+
+### 7. **Best Practices, Security & Code Quality**
+- Clean code habits
+- Backend and frontend security tips
+- Code quality tools (ESLint, Prettier)
+
+### 8. **Debugging**
+- Debugging tools and extensions
+- Debugging backend and frontend
+
+### 9. **Interview Preparation & Portfolio**
+- Common full stack interview questions
+- System design basics
+- Coding challenges (LeetCode, HackerRank)
+- Resume & portfolio tips
+
+---
+
+## Step-by-Step Project Guide
+
+### **Module 1: Setup & Tools**
+**Install Node.js, MongoDB, Redis, Git, VS Code:**
+- Download Node.js: https://nodejs.org/
+- Download MongoDB: https://www.mongodb.com/try/download/community
+- Download Redis:
+  - Windows: https://github.com/tporadowski/redis/releases (download the latest .msi or .zip and follow instructions)
+  - Mac: `brew install redis` (if you use Homebrew)
+  - Linux: Use your package manager, e.g., `sudo apt install redis-server`
+- Download Git: https://git-scm.com/
+- Download Visual Studio Code: https://code.visualstudio.com/
 
 **Folder Structure Example:**
 ```text
@@ -41,130 +125,6 @@ movieverse/
                                          v
                                  [Redis/Bull Queue]
 ```
-
-**Screenshots (add your own):**
-- ![VS Code Example](./screenshots/vscode-example.png)
-- ![Postman API Test](./screenshots/postman-api-test.png)
-- ![Debugging in Chrome DevTools](./screenshots/chrome-devtools-debug.png)
-
-*Tip: Take your own screenshots as you work and save them in a `screenshots/` folder for easy reference!*
-
----
-
-## What if You Get Stuck?
-
-If you get stuck on any step:
-- **Refer to the MovieVerse project codebase** (this repo) for examples and solutions.
-- **How to use as reference:**
-  1. Search for the file or feature (e.g., `movieController.js`, `Navbar.js`, `queue`) in this repo.
-  2. Read the code and comments to understand the logic and structure.
-  3. Compare your code with the reference to spot mistakes or missing parts.
-  4. Copy only the relevant code snippet (not the whole file) if needed, and adapt it to your project.
-- **Tip:** Try to solve the problem yourself first, then use the reference to learn best practices and fill knowledge gaps.
-- **Ask for help:** If you're still stuck, ask questions on forums like Stack Overflow, or discuss with peers/mentors.
-
-This approach will help you learn by doing, while also having a safety net to keep progressing!
-
----
-
-## Should You Build Backend or Frontend First?
-
-**Best Practice:**
-- Start with the backend (Node.js/Express, MongoDB, REST API, authentication)
-- Test your backend endpoints with Postman or curl
-- Then build the frontend (React, UI, API integration)
-
-**Why?**
-- You define your data models and API contracts up front
-- You can test and debug backend logic before UI work
-- Frontend can consume real API responses, making integration easier
-- Fewer surprises and smoother development
-
----
-
-## Course Roadmap & Skills
-
-### 1. **Web Fundamentals**
-- HTML, CSS, JavaScript basics
-- Responsive design
-- Git & GitHub basics
-
-### 2. **Backend Development (Node.js & Express)**
-- Node.js basics
-- Express.js routing & middleware
-- REST API design
-- JWT authentication
-- Error handling
-- Environment variables
-
-### 3. **Database (MongoDB & Mongoose)**
-- MongoDB basics
-- Data modeling
-- CRUD operations
-- Mongoose schemas & validation
-- Indexing & performance
-
-### 4. **Frontend Development (React)**
-- React fundamentals (components, props, state)
-- React Router (navigation)
-- Modern CSS (Flexbox, Grid, custom themes)
-- API calls with Axios
-- Authentication flows
-- UI libraries (Material-UI)
-
-### 5. **Testing (Jest & Supertest)**
-- Why testing matters
-- Installing Jest (backend & frontend)
-- Writing and running tests
-- Using Supertest for API testing
-- React Testing Library for frontend
-
-### 6. **Advanced Backend**
-- Connection pooling
-- Caching (node-cache)
-- Queue system (Bull + Redis)
-- Async job processing
-- Bulk operations
-- Security best practices
-
-### 7. **DevOps & Deployment**
-- Environment setup
-- Using .env files
-- Deploying frontend (Vercel)
-- Deploying backend (Render)
-- Setting up MongoDB Atlas
-- Setting up Upstash Redis
-- Domain & SSL setup
-
-### 8. **Best Practices & Security**
-- Clean code habits
-- Backend and frontend security tips
-- Code quality tools
-
-### 9. **Debugging**
-- Debugging tools and extensions
-- Debugging backend and frontend
-
-### 10. **Interview Preparation**
-- Common full stack interview questions
-- System design basics
-- Coding challenges (LeetCode, HackerRank)
-- Resume & portfolio tips
-
----
-
-## Step-by-Step Project Guide
-
-### **Module 1: Setup & Tools**
-**Install Node.js, MongoDB, Redis, Git, VS Code:**
-- Download Node.js: https://nodejs.org/
-- Download MongoDB: https://www.mongodb.com/try/download/community
-- Download Redis:
-  - Windows: https://github.com/tporadowski/redis/releases (download the latest .msi or .zip and follow instructions)
-  - Mac: `brew install redis` (if you use Homebrew)
-  - Linux: Use your package manager, e.g., `sudo apt install redis-server`
-- Download Git: https://git-scm.com/
-- Download Visual Studio Code: https://code.visualstudio.com/
 
 **(Optional) Install Postman:**
 - Download Postman for API testing: https://www.postman.com/downloads/
@@ -540,74 +500,45 @@ npm install bull redis
 
 ---
 
-## Quick Reference Tables
+### **Module 9: Interview Preparation & Portfolio**
+**Why This Matters:**
+- Prepares you for job interviews and helps you showcase your skills to employers.
 
-| Command                | Purpose                        |
-|------------------------|--------------------------------|
-| npm start              | Start the app                  |
-| npm test               | Run tests                      |
-| npm install <package>  | Install a package              |
-| git status             | Check git changes              |
-| git add .              | Stage all changes              |
-| git commit -m "msg"    | Commit changes                 |
-| git push               | Push to remote repo            |
+**Step-by-Step Guide:**
+1. **Review Common Full Stack Interview Questions:**
+  - Study JavaScript, Node.js, React, MongoDB, and system design questions.
+  - Use resources like freeCodeCamp, InterviewBit, and YouTube for sample questions and answers.
+2. **Practice System Design Basics:**
+  - Learn to explain the architecture of your MovieVerse app (draw diagrams, discuss data flow, scaling, security, etc.).
+  - Practice with friends or mentors, or record yourself explaining your design.
+3. **Daily Coding Challenges:**
+  - Solve problems on LeetCode, HackerRank, or InterviewBit every day.
+  - Focus on arrays, strings, algorithms, and data structures.
+  - Track your progress and revisit tough problems.
+4. **Update Your Resume:**
+  - Add MovieVerse as a project, describing your role, tech stack, and key features you built.
+  - Highlight skills like REST APIs, authentication, testing, deployment, and teamwork.
+5. **Build/Update Your Portfolio:**
+  - Create a GitHub repo with a clear README, screenshots, and deployment links.
+  - Optionally, make a personal website to showcase MovieVerse and other projects.
+  - Write a blog post or LinkedIn article about your learning journey and project experience.
+6. **Share and Get Feedback:**
+  - Share your project in developer communities (freeCodeCamp, DEV.to, LinkedIn, etc.).
+  - Ask for feedback on your code, design, and resume.
+7. **Prepare for Behavioral Questions:**
+  - Practice explaining your project, challenges you faced, and how you solved them.
+  - Be ready to discuss teamwork, learning, and problem-solving experiences.
 
-| HTTP Status | Meaning         |
-|-------------|-----------------|
-| 200         | OK              |
-| 201         | Created         |
-| 400         | Bad Request     |
-| 401         | Unauthorized    |
-| 404         | Not Found       |
-| 500         | Server Error    |
-
----
-
-## Project Milestones
-- ✅ Backend API running and tested with Postman/Thunder Client
-- ✅ Frontend UI loads and fetches data from backend
-- ✅ Authentication (register/login) works
-- ✅ CRUD operations for movies work
-- ✅ Tests pass for backend and frontend
-- ✅ App deployed and accessible online
-
----
-
-## Accessibility (a11y) Tips
-- Use semantic HTML tags (e.g., <nav>, <main>, <button>)
-- Add alt text to all images
-- Ensure good color contrast for readability
-- Make forms accessible with labels
-- Test navigation with keyboard (Tab key)
-- Learn more: https://web.dev/accessibility/
+**Resources:**
+- [LeetCode](https://leetcode.com/)
+- [HackerRank](https://www.hackerrank.com/)
+- [InterviewBit](https://www.interviewbit.com/)
+- [System Design Primer](https://github.com/donnemartin/system-design-primer)
+- [freeCodeCamp Interview Prep](https://www.freecodecamp.org/news/tag/interview-prep/)
+- [How to Build a Developer Portfolio](https://www.freecodecamp.org/news/how-to-build-a-developer-portfolio/)
 
 ---
 
-## TypeScript (Optional Advanced Step)
-- TypeScript adds static typing to JavaScript for fewer bugs
-- You can migrate your backend or frontend to TypeScript as you advance
-- Learn more: https://www.typescriptlang.org/docs/
-
----
-
-## Community & Portfolio
-- Share your progress and code on GitHub
-- Write a blog post or LinkedIn article about your learning journey
-- Add MovieVerse to your portfolio and resume
-- Join dev communities (e.g., freeCodeCamp, DEV.to, Hashnode)
-
----
-
-## Video Tutorials (per module)
-- [freeCodeCamp Full Stack Course](https://www.youtube.com/watch?v=4Z9KEBexzcM)
-- [Node.js Crash Course](https://www.youtube.com/watch?v=fBNz5xF-Kx4)
-- [React JS Crash Course](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
-- [Jest Testing Crash Course](https://www.youtube.com/watch?v=FgnxcUQ5vho)
-- [MongoDB Tutorial](https://www.youtube.com/watch?v=ofme2o29ngU)
-- [VS Code Debugging Guide](https://www.youtube.com/watch?v=H0XScE08hy8)
-- [Web Accessibility Guide](https://www.youtube.com/watch?v=3f31oufqFSM)
-
----
 
 ## Module Checklists & FAQ
 
@@ -630,6 +561,89 @@ npm install bull redis
 
 ---
 
+
+## Quick Reference Tables
+
+### Common Commands
+
+| Command                      | Description                       |
+|------------------------------|-----------------------------------|
+| `npm start`                  | Start the app (frontend/backend)  |
+| `npm test`                   | Run tests                         |
+| `npm install <package>`      | Install a package                 |
+| `git status`                 | Show changed files                |
+| `git add .`                  | Stage all changes                 |
+| `git commit -m "msg"`        | Commit staged changes             |
+| `git push`                   | Push commits to remote repo       |
+| `git pull`                   | Pull latest changes from remote   |
+| `npm run build`              | Build production-ready frontend   |
+
+### HTTP Status Codes
+
+| Code | Meaning         |
+|------|-----------------|
+| 200  | OK              |
+| 201  | Created         |
+| 400  | Bad Request     |
+| 401  | Unauthorized    |
+| 403  | Forbidden       |
+| 404  | Not Found       |
+| 500  | Server Error    |
+
+---
+
+
+## Project Milestones
+- ✅ Backend API running and tested with Postman/Thunder Client
+- ✅ Frontend UI loads and fetches data from backend
+- ✅ Authentication (register/login) works
+- ✅ CRUD operations for movies work
+- ✅ Tests pass for backend and frontend
+- ✅ App deployed and accessible online
+
+---
+
+
+## Accessibility (a11y) Tips
+- Use semantic HTML tags (e.g., <nav>, <main>, <button>)
+- Add alt text to all images
+- Ensure good color contrast for readability
+- Make forms accessible with labels
+- Test navigation with keyboard (Tab key)
+- Learn more: https://web.dev/accessibility/
+
+---
+
+
+## TypeScript (Optional Advanced Step)
+- TypeScript adds static typing to JavaScript for fewer bugs
+- You can migrate your backend or frontend to TypeScript as you advance
+- Learn more: https://www.typescriptlang.org/docs/
+
+---
+
+
+## Community & Portfolio
+- Share your progress and code on GitHub
+- Write a blog post or LinkedIn article about your learning journey
+- Add MovieVerse to your portfolio and resume
+- Join dev communities (e.g., freeCodeCamp, DEV.to, Hashnode)
+
+---
+
+
+## Video Tutorials (per module)
+- [freeCodeCamp Full Stack Course](https://www.youtube.com/watch?v=4Z9KEBexzcM)
+- [Node.js Crash Course](https://www.youtube.com/watch?v=fBNz5xF-Kx4)
+- [React JS Crash Course](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
+- [Jest Testing Crash Course](https://www.youtube.com/watch?v=FgnxcUQ5vho)
+- [MongoDB Tutorial](https://www.youtube.com/watch?v=ofme2o29ngU)
+- [VS Code Debugging Guide](https://www.youtube.com/watch?v=H0XScE08hy8)
+- [Web Accessibility Guide](https://www.youtube.com/watch?v=3f31oufqFSM)
+
+---
+
+
 ## Mini-Project Ideas (After MovieVerse)
 - **BookVerse:** Book management app (CRUD, search, auth)
 - **TaskVerse:** To-do/task manager with user login
@@ -638,6 +652,7 @@ npm install bull redis
 
 ---
 
+
 ## Soft Skills & Git Tips
 - Write clear commit messages (e.g., "Add movie CRUD endpoints")
 - Use branches for new features (`git checkout -b feature/feature-name`)
@@ -645,6 +660,7 @@ npm install bull redis
 - Practice explaining your code and project to others
 
 ---
+
 
 ## Learning Resources
 - [MDN Web Docs](https://developer.mozilla.org/)
@@ -658,17 +674,6 @@ npm install bull redis
 
 ---
 
-## How to Use This Course
-- Follow modules in order
-- Run the commands and create files as shown
-- **Do NOT clone the repo—build everything yourself for hands-on practice**
-- Build the app step by step
-- Practice coding and system design regularly
-- Update your resume and portfolio as you learn
-
-**By the end, you'll be ready to build real-world apps and ace full stack developer interviews!**
-
----
 
 ## Frequently Asked Questions (FAQ)
 
@@ -689,6 +694,7 @@ A: Use Vercel (frontend), Render (backend), MongoDB Atlas, and Upstash Redis—a
 
 ---
 
+
 ## Glossary
 - **CRUD:** Create, Read, Update, Delete (basic database operations)
 - **API:** Application Programming Interface (how frontend talks to backend)
@@ -700,13 +706,3 @@ A: Use Vercel (frontend), Render (backend), MongoDB Atlas, and Upstash Redis—a
 
 ---
 
-## Suggested Timeline
-- **Module 1:** 1-2 days (setup, tools)
-- **Module 2:** 2-3 days (backend basics)
-- **Module 3:** 2-3 days (frontend basics)
-- **Module 4:** 2-3 days (testing with Jest & Supertest)
-- **Module 5:** 2-3 days (advanced features)
-- **Module 6:** 1-2 days (deployment)
-- **Module 7:** Ongoing (best practices, security, debugging, interview prep)
-
-*Adjust as needed—go at your own pace!*
