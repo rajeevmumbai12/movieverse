@@ -698,6 +698,3 @@ A: Use Vercel (frontend), Render (backend), MongoDB Atlas, and Upstash Redis—a
 - **Queue:** System for handling background jobs (e.g., Bull + Redis)
 - **Cache:** Temporary storage for fast data access (e.g., node-cache)
 - **Deployment:** Putting your app live on the internet
-
----
-
