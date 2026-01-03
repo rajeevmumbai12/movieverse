@@ -4,9 +4,7 @@
 - Beginners who want to become job-ready full stack developers
 - Anyone who wants to build a real-world MERN app step by step (from scratch, not by cloning)
 
----
-
-## Suggested Timeline
+### Suggested Timeline
 - **Module 1:** 1-2 days (setup, tools)
 - **Module 2:** 2-3 days (backend basics)
 - **Module 3:** 2-3 days (frontend basics)
@@ -330,6 +328,8 @@ npm test
 
 *You can also use Jest for frontend (React) testing. See React docs for details!*
 
+---
+
 ### **Module 5: Advanced Backend**
 **Connection pooling:**
 - Modify MongoDB connection in `backend/config/db.js`:
@@ -424,6 +424,7 @@ npm install bull redis
 ---
 
 ### **Module 8: Debugging**
+#### Backend (Node.js) Debugging
 **Why Debugging Matters:**
 - Debugging helps you find and fix errors faster, making you a better developer.
 
@@ -451,9 +452,7 @@ npm install bull redis
 - Search error messages on Google or Stack Overflow.
 - Don’t be afraid to ask for help if you’re stuck!
 
----
-
-## Frontend (React) Debugging Options for Beginners
+### Frontend (React) Debugging
 
 **1. Chrome DevTools (No Setup Needed):**
 - Press F12 or right-click and choose "Inspect" in Chrome/Edge.
