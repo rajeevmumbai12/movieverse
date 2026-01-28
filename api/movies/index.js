@@ -4,10 +4,30 @@ module.exports = async (req, res) => {
   try {
     await connectDB();
 
-    const Movie = require('../models/Movie');
+    const mongoose = require('mongoose');
 
-    if (req.method === 'GET') {
-      const page = parseInt(req.query.page) || 1;
+    // Create model inline after connection
+    if (!mongoose.models.Movie) {
+      const movieSchema = new mongoose.Schema({
+        title: { type: String, required: true, trim: true },
+        description: { type: String, required: true },
+        rating: { type: Number, required: true, min: 0, max: 10 },
+        releaseDate: { type: Date, required: true },
+        duration: { type: Number, required: true },
+        director: { type: String, required: true },
+        genre: { type: [String], required: true },
+        cast: { type: [String], default: [] },
+        posterUrl: { type: String, default: '' },
+        imdbId: { type: String, default: '' },
+        createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        createdAt: { type: Date, default: Date.now },
+        updatedAt: { type: Date, default: Date.now }
+      }, { bufferCommands: false });
+
+      mongoose.model('Movie', movieSchema);
+    }
+
+    const Movie = mongoose.models.Movie;
       const limit = parseInt(req.query.limit) || 10;
       const skip = (page - 1) * limit;
 

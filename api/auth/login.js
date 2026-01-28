@@ -8,8 +8,34 @@ module.exports = async (req, res) => {
   try {
     await connectDB();
 
-    const User = require('../models/User');
+    const mongoose = require('mongoose');
+    const bcrypt = require('bcryptjs');
     const jwt = require('jsonwebtoken');
+
+    // Create model inline after connection
+    if (!mongoose.models.User) {
+      const userSchema = new mongoose.Schema({
+        name: { type: String, required: true, trim: true },
+        email: { type: String, required: true, unique: true, lowercase: true, trim: true },
+        password: { type: String, required: true, minlength: 6, select: false },
+        role: { type: String, enum: ['user', 'admin'], default: 'user' },
+        createdAt: { type: Date, default: Date.now }
+      }, { bufferCommands: false });
+
+      userSchema.pre('save', async function(next) {
+        if (!this.isModified('password')) next();
+        const salt = await bcrypt.genSalt(10);
+        this.password = await bcrypt.hash(this.password, salt);
+      });
+
+      userSchema.methods.matchPassword = async function(enteredPassword) {
+        return await bcrypt.compare(enteredPassword, this.password);
+      };
+
+      mongoose.model('User', userSchema);
+    }
+
+    const User = mongoose.models.User;
     const { email, password } = req.body;
 
     if (!email || !password) {
