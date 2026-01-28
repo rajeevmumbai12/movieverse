@@ -1,10 +1,9 @@
 const connectDB = require('../utils/db');
-const { getMovies, createMovie } = require('../../backend/controllers/movieController');
 
 module.exports = async (req, res) => {
   try {
     await connectDB();
-    require('../../backend/models/Movie');
+    const { getMovies, createMovie } = require('../../backend/controllers/movieController');
     if (req.method === 'GET') {
       await getMovies(req, res);
     } else if (req.method === 'POST') {

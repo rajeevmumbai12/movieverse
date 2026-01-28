@@ -1,6 +1,4 @@
 const connectDB = require('../utils/db');
-const { getMe } = require('../../backend/controllers/authController');
-const { protect } = require('../../backend/middleware/auth');
 
 module.exports = async (req, res) => {
   if (req.method !== 'GET') {
@@ -9,7 +7,8 @@ module.exports = async (req, res) => {
   }
   try {
     await connectDB();
-    require('../../backend/models/User');
+    const { getMe } = require('../../backend/controllers/authController');
+    const { protect } = require('../../backend/middleware/auth');
     await protect(req, res, async () => {
       await getMe(req, res);
     });

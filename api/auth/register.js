@@ -1,5 +1,4 @@
 const connectDB = require('../utils/db');
-const { register } = require('../../backend/controllers/authController');
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -8,7 +7,7 @@ module.exports = async (req, res) => {
   }
   try {
     await connectDB();
-    require('../../backend/models/User');
+    const { register } = require('../../backend/controllers/authController');
     await register(req, res);
   } catch (error) {
     console.error('Register endpoint error:', error);
