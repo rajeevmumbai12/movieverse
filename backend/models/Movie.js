@@ -73,4 +73,4 @@ movieSchema.index({ createdAt: -1 });
 movieSchema.index({ title: 1, rating: -1 }); // Compound index for sorting
 movieSchema.index({ genre: 1 }); // For genre filtering
 
-module.exports = mongoose.model('Movie', movieSchema);
+module.exports = mongoose.models.Movie || mongoose.model('Movie', movieSchema);
