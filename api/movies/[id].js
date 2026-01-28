@@ -1,10 +1,10 @@
 const { getMovie, updateMovie, deleteMovie } = require('../../backend/controllers/movieController');
 const connectDB = require('../utils/db');
-const Movie = require('../../backend/models/Movie');
 
 module.exports = async (req, res) => {
   try {
     await connectDB();
+    require('../../backend/models/Movie');
     if (req.method === 'GET') {
       await getMovie(req, res);
     } else if (req.method === 'PUT') {
