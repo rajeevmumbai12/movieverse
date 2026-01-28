@@ -56,6 +56,8 @@ const movieSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+}, {
+  bufferCommands: false
 });
 
 // Update the updatedAt field on save

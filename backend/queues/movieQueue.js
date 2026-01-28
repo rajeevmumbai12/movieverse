@@ -1,4 +1,4 @@
-const Movie = require('../models/Movie');
+const { getModel } = require('../utils/modelLoader');
 
 let movieQueue = null;
 let queueAvailable = false;
@@ -39,6 +39,7 @@ if (process.env.ENABLE_QUEUE === 'true') {
 
     // Process movie creation jobs
     movieQueue.process('create-movie', async (job) => {
+      const Movie = getModel('Movie');
       const { movieData } = job.data;
       
       try {
@@ -54,6 +55,7 @@ if (process.env.ENABLE_QUEUE === 'true') {
 
     // Process bulk movie creation
     movieQueue.process('bulk-create-movies', async (job) => {
+      const Movie = getModel('Movie');
       const { movies } = job.data;
       
       try {
