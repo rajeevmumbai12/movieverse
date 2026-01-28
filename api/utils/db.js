@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+// Set bufferCommands to false globally to prevent buffering issues
+mongoose.set('bufferCommands', false);
+
 let cached = global.mongoose;
 
 if (!cached) {
