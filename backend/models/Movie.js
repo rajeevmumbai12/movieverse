@@ -56,8 +56,6 @@ const movieSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-}, {
-  bufferCommands: false
 });
 
 // Update the updatedAt field on save
@@ -75,4 +73,4 @@ movieSchema.index({ createdAt: -1 });
 movieSchema.index({ title: 1, rating: -1 }); // Compound index for sorting
 movieSchema.index({ genre: 1 }); // For genre filtering
 
-module.exports = mongoose.models.Movie || mongoose.model('Movie', movieSchema);
+module.exports = mongoose.model('Movie', movieSchema);

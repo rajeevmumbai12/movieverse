@@ -1,9 +1,8 @@
 const jwt = require('jsonwebtoken');
-const { getModel } = require('../utils/modelLoader');
+const User = require('../models/User');
 
 // Protect routes - check if user is authenticated
 exports.protect = async (req, res, next) => {
-  const User = getModel('User');
   let token;
 
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
