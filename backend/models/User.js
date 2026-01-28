@@ -30,10 +30,6 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
-}, {
-  bufferCommands: false,
-  autoCreate: false,
-  autoIndex: false
 });
 
 // Hash password before saving
