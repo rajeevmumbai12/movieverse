@@ -58,4 +58,8 @@ const movieSchema = new mongoose.Schema({
   }
 }, { bufferCommands: false });
 
-module.exports = mongoose.models.Movie || mongoose.model('Movie', movieSchema);
+// Delete existing model to ensure clean state in serverless
+delete mongoose.models.Movie;
+delete mongoose.connection.models.Movie;
+
+module.exports = mongoose.model('Movie', movieSchema);

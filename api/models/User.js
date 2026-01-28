@@ -44,4 +44,8 @@ userSchema.methods.matchPassword = async function(enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
 
-module.exports = mongoose.models.User || mongoose.model('User', userSchema);
+// Delete existing model to ensure clean state in serverless
+delete mongoose.models.User;
+delete mongoose.connection.models.User;
+
+module.exports = mongoose.model('User', userSchema);
