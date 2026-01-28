@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', false);
+mongoose.set('bufferCommands', true);
 
 let cached = global.mongoose;
 
