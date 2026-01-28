@@ -1,0 +1,14 @@
+{
+  "name": "movieverse",
+  "version": "1.0.0",
+  "description": "MovieVerse - Full-stack movie management application",
+  "scripts": {
+    "install:all": "cd frontend && npm install && cd .. && echo All dependencies installed",
+    "build:frontend": "cd frontend && npm run build",
+    "deploy:vercel": "vercel --prod",
+    "dev:local": "vercel dev"
+  },
+  "keywords": ["movies", "react", "mongodb", "vercel", "serverless"],
+  "author": "",
+  "license": "MIT"
+}
