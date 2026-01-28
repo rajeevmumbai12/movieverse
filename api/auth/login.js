@@ -7,8 +7,8 @@ module.exports = async (req, res) => {
 
   try {
     await connectDB();
-    const { getModel } = require('../../backend/utils/modelLoader');
-    const User = getModel('User');
+
+    const User = require('../models/User');
     const jwt = require('jsonwebtoken');
     const { email, password } = req.body;
 

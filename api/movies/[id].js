@@ -3,18 +3,49 @@ const connectDB = require('../utils/db');
 module.exports = async (req, res) => {
   try {
     await connectDB();
-    const { getMovie, updateMovie, deleteMovie } = require('../../backend/controllers/movieController');
+
+    const Movie = require('../models/Movie');
+    const { id } = req.query;
+
     if (req.method === 'GET') {
-      await getMovie(req, res);
+      const movie = await Movie.findById(id).lean();
+
+      if (!movie) {
+        return res.status(404).json({ message: 'Movie not found' });
+      }
+
+      res.json(movie);
+
     } else if (req.method === 'PUT') {
-      await updateMovie(req, res);
+      const movie = await Movie.findById(id);
+
+      if (!movie) {
+        return res.status(404).json({ message: 'Movie not found' });
+      }
+
+      const updatedMovie = await Movie.findByIdAndUpdate(
+        id,
+        req.body,
+        { new: true, runValidators: true }
+      );
+
+      res.json(updatedMovie);
+
     } else if (req.method === 'DELETE') {
-      await deleteMovie(req, res);
+      const movie = await Movie.findById(id);
+
+      if (!movie) {
+        return res.status(404).json({ message: 'Movie not found' });
+      }
+
+      await Movie.findByIdAndDelete(id);
+      res.json({ message: 'Movie removed' });
+
     } else {
-      res.status(405).send('Method Not Allowed');
+      res.status(405).json({ message: 'Method Not Allowed' });
     }
   } catch (error) {
-    console.error('Movie by ID endpoint error:', error);
-    res.status(500).json({ message: 'Database connection failed', error: error.message });
+    console.error('Movie by ID error:', error);
+    res.status(500).json({ message: error.message });
   }
 };
