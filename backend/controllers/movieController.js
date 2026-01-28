@@ -1,4 +1,3 @@
-const Movie = require('../models/Movie');
 const { cache, CACHE_KEYS, generateCacheKey, clearMovieCache } = require('../config/cache');
 const { movieQueue, isQueueAvailable } = require('../queues/movieQueue');
 
@@ -7,6 +6,7 @@ const { movieQueue, isQueueAvailable } = require('../queues/movieQueue');
 // @access  Public
 exports.getMovies = async (req, res) => {
   try {
+    const Movie = require('../models/Movie');
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
@@ -74,6 +74,7 @@ exports.getMovies = async (req, res) => {
 // @access  Public
 exports.getMovie = async (req, res) => {
   try {
+    const Movie = require('../models/Movie');
     const cacheKey = `${CACHE_KEYS.MOVIE_BY_ID}${req.params.id}`;
 
     // Check cache
@@ -104,6 +105,7 @@ exports.getMovie = async (req, res) => {
 // @access  Private/Admin
 exports.createMovie = async (req, res) => {
   try {
+    const Movie = require('../models/Movie');
     const movieData = {
       ...req.body,
       createdBy: req.user._id
@@ -151,7 +153,8 @@ exports.createMovie = async (req, res) => {
 // @route   PUT /api/movies/:id
 // @access  Private/Admin
 exports.updateMovie = async (req, res) => {
-  try {
+  try {Movie = require('../models/Movie');
+    const 
     const movie = await Movie.findById(req.params.id);
 
     if (!movie) {
@@ -179,7 +182,8 @@ exports.updateMovie = async (req, res) => {
 // @route   DELETE /api/movies/:id
 // @access  Private/Admin
 exports.deleteMovie = async (req, res) => {
-  try {
+  try {Movie = require('../models/Movie');
+    const 
     const movie = await Movie.findById(req.params.id);
 
     if (!movie) {

@@ -1,4 +1,3 @@
-const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 // Generate JWT Token
@@ -13,6 +12,7 @@ const generateToken = (id) => {
 // @access  Public
 exports.register = async (req, res) => {
   try {
+    const User = require('../models/User');
     const { name, email, password, role } = req.body;
 
     // Check if user exists
@@ -46,6 +46,7 @@ exports.register = async (req, res) => {
 // @access  Public
 exports.login = async (req, res) => {
   try {
+    const User = require('../models/User');
     const { email, password } = req.body;
 
     // Validate email & password
@@ -82,6 +83,7 @@ exports.login = async (req, res) => {
 // @access  Private
 exports.getMe = async (req, res) => {
   try {
+    const User = require('../models/User');
     const user = await User.findById(req.user.id);
     res.json(user);
   } catch (error) {
