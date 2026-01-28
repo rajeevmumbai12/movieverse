@@ -4,6 +4,7 @@ const connectDB = require('../utils/db');
 module.exports = async (req, res) => {
   try {
     await connectDB();
+    require('../../backend/models/Movie');
     if (req.method === 'GET') {
       await getMovie(req, res);
     } else if (req.method === 'PUT') {
@@ -14,6 +15,7 @@ module.exports = async (req, res) => {
       res.status(405).send('Method Not Allowed');
     }
   } catch (error) {
-    res.status(500).json({ message: 'Database connection failed' });
+    console.error('Movie by ID endpoint error:', error);
+    res.status(500).json({ message: 'Database connection failed', error: error.message });
   }
 };

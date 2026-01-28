@@ -8,8 +8,10 @@ module.exports = async (req, res) => {
   }
   try {
     await connectDB();
+    require('../../backend/models/User');
     await login(req, res);
   } catch (error) {
-    res.status(500).json({ message: 'Database connection failed' });
+    console.error('Login endpoint error:', error);
+    res.status(500).json({ message: 'Database connection failed', error: error.message });
   }
 };

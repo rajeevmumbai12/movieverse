@@ -8,8 +8,11 @@ module.exports = async (req, res) => {
   }
   try {
     await connectDB();
+    // Ensure models are loaded after connection
+    require('../../backend/models/User');
     await register(req, res);
   } catch (error) {
-    res.status(500).json({ message: 'Database connection failed' });
+    console.error('Register endpoint error:', error);
+    res.status(500).json({ message: 'Database connection failed', error: error.message });
   }
 };

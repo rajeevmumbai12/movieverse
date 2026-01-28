@@ -9,10 +9,12 @@ module.exports = async (req, res) => {
   }
   try {
     await connectDB();
+    require('../../backend/models/User');
     await protect(req, res, async () => {
       await getMe(req, res);
     });
   } catch (error) {
-    res.status(500).json({ message: 'Database connection failed' });
+    console.error('GetMe endpoint error:', error);
+    res.status(500).json({ message: 'Database connection failed', error: error.message });
   }
 };
