@@ -1,38 +1,45 @@
 const mongoose = require('mongoose');
 
+// Set these BEFORE any connection attempts
+mongoose.set('bufferCommands', false);
+mongoose.set('strictQuery', false);
+
+let cachedConnection = null;
+
 const connectDB = async () => {
-  // Reuse existing connection if available
-  if (mongoose.connection.readyState === 1) {
-    console.log('Using existing database connection');
-    return mongoose.connection;
+  // Return cached connection if available
+  if (cachedConnection && mongoose.connection.readyState === 1) {
+    console.log('Using cached database connection');
+    return cachedConnection;
   }
 
   if (mongoose.connection.readyState === 2) {
     console.log('Database connection in progress, waiting...');
-    await new Promise((resolve) => {
-      mongoose.connection.once('connected', resolve);
+    return new Promise((resolve) => {
+      mongoose.connection.once('connected', () => {
+        cachedConnection = mongoose.connection;
+        resolve(cachedConnection);
+      });
     });
-    return mongoose.connection;
   }
 
   try {
-    mongoose.set('bufferCommands', false);
-    mongoose.set('strictQuery', false);
-
-    await mongoose.connect(process.env.MONGODB_URI, {
+    console.log('Creating new database connection...');
+    
+    const conn = await mongoose.connect(process.env.MONGODB_URI, {
       maxPoolSize: 10,
       minPoolSize: 2,
       socketTimeoutMS: 45000,
       serverSelectionTimeoutMS: 10000,
       connectTimeoutMS: 10000,
+      bufferCommands: false,
     });
 
-    console.log(`MongoDB Connected: ${mongoose.connection.host}`);
-
-    // Wait for connection to be fully ready
-    await new Promise((resolve) => setTimeout(resolve, 100));
-
-    return mongoose.connection;
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    
+    cachedConnection = conn.connection;
+    
+    return cachedConnection;
   } catch (error) {
     console.error(`MongoDB connection error: ${error.message}`);
     throw error;
