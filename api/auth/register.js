@@ -1,5 +1,5 @@
-const { register } = require('../../backend/controllers/authController');
 const connectDB = require('../utils/db');
+const { register } = require('../../backend/controllers/authController');
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {

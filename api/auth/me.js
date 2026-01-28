@@ -1,6 +1,6 @@
+const connectDB = require('../utils/db');
 const { getMe } = require('../../backend/controllers/authController');
 const { protect } = require('../../backend/middleware/auth');
-const connectDB = require('../utils/db');
 
 module.exports = async (req, res) => {
   if (req.method !== 'GET') {

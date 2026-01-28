@@ -1,5 +1,5 @@
-const { getMovie, updateMovie, deleteMovie } = require('../../backend/controllers/movieController');
 const connectDB = require('../utils/db');
+const { getMovie, updateMovie, deleteMovie } = require('../../backend/controllers/movieController');
 
 module.exports = async (req, res) => {
   try {
