@@ -183,16 +183,16 @@ const sampleMovies = [
     imdbId: "tt0099685"
   },
   {
-    title: "Seven Samurai",
-    description: "A poor village under attack by bandits recruits seven unemployed samurai to help them defend themselves.",
-    rating: 8.6,
-    releaseDate: "1954-04-26",
-    duration: 207,
-    director: "Akira Kurosawa",
-    genre: ["Action", "Drama"],
-    cast: ["Toshirô Mifune", "Takashi Shimura", "Keiko Tsushima"],
-    posterUrl: "https://m.media-amazon.com/images/M/MV5BNWQ3OTM4ZGItMWEwZi00MjI5LWI3YzgtNTYwNWRkNmIzMGI5XkEyXkFqcGdeQXVyNDY2MTk1ODk@._V1_.jpg",
-    imdbId: "tt0047478"
+    title: "Avatar",
+    description: "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+    rating: 7.9,
+    releaseDate: "2009-12-18",
+    duration: 162,
+    director: "James Cameron",
+    genre: ["Action", "Adventure", "Fantasy"],
+    cast: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver"],
+    posterUrl: "https://m.media-amazon.com/images/M/MV5BZDA0OGQxNTItMDZkMC00N2UyLTg3MzMtYTJmNjg3Nzk5MzRiXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg",
+    imdbId: "tt0499549"
   },
   {
     title: "Se7en",
@@ -255,16 +255,16 @@ const sampleMovies = [
     imdbId: "tt0245429"
   },
   {
-    title: "Life Is Beautiful",
-    description: "When an open-minded Jewish waiter and his son become victims of the Holocaust, he uses a perfect mixture of will, humor and imagination to protect his son.",
-    rating: 8.6,
-    releaseDate: "1997-12-20",
-    duration: 116,
-    director: "Roberto Benigni",
-    genre: ["Comedy", "Drama", "Romance"],
-    cast: ["Roberto Benigni", "Nicoletta Braschi", "Giorgio Cantarini"],
-    posterUrl: "https://m.media-amazon.com/images/M/MV5BYmJmM2Q4NmMtYThmNC00ZjRlLWEyZmItZTIwOTBlZDQ3NTJiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
-    imdbId: "tt0118799"
+    title: "The Avengers",
+    description: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
+    rating: 8.0,
+    releaseDate: "2012-05-04",
+    duration: 143,
+    director: "Joss Whedon",
+    genre: ["Action", "Adventure", "Sci-Fi"],
+    cast: ["Robert Downey Jr.", "Chris Evans", "Scarlett Johansson"],
+    posterUrl: "https://m.media-amazon.com/images/M/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
+    imdbId: "tt0848228"
   },
   {
     title: "The Green Mile",
@@ -471,28 +471,28 @@ const sampleMovies = [
     imdbId: "tt0910970"
   },
   {
-    title: "The Lives of Others",
-    description: "In 1984 East Berlin, an agent of the secret police conducting surveillance on a writer and his lover finds himself becoming increasingly absorbed by their lives.",
-    rating: 8.4,
-    releaseDate: "2006-03-23",
-    duration: 137,
-    director: "Florian Henckel von Donnersmarck",
-    genre: ["Drama", "Mystery", "Thriller"],
-    cast: ["Ulrich Mühe", "Martina Gedeck", "Sebastian Koch"],
-    posterUrl: "https://m.media-amazon.com/images/M/MV5BNmQyNmJjM2ItNTQzYi00ZjMxLWFjMDYtZjUyN2YzOGJjMzgxXkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg",
-    imdbId: "tt0405094"
+    title: "The Truman Show",
+    description: "An insurance salesman discovers his whole life is actually a reality TV show.",
+    rating: 8.2,
+    releaseDate: "1998-06-05",
+    duration: 103,
+    director: "Peter Weir",
+    genre: ["Comedy", "Drama", "Sci-Fi"],
+    cast: ["Jim Carrey", "Ed Harris", "Laura Linney"],
+    posterUrl: "https://m.media-amazon.com/images/M/MV5BMDIzODcyY2EtMmY2MC00ZWVlLTgwMzAtMjQwOWUyNmJjNTYyXkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_.jpg",
+    imdbId: "tt0120382"
   },
   {
-    title: "Paths of Glory",
-    description: "After refusing to attack an enemy position, a general accuses the soldiers of cowardice and their commanding officer must defend them.",
-    rating: 8.4,
-    releaseDate: "1957-12-25",
-    duration: 88,
-    director: "Stanley Kubrick",
-    genre: ["Drama", "War"],
-    cast: ["Kirk Douglas", "Ralph Meeker", "Adolphe Menjou"],
-    posterUrl: "https://m.media-amazon.com/images/M/MV5BOTI5Nzc0OTMtYzBkMS00NjkxLThmM2UtNjM2ODgxN2M5NjNkXkEyXkFqcGdeQXVyNjQ2MjQ5NzM@._V1_.jpg",
-    imdbId: "tt0050825"
+    title: "Jurassic Park",
+    description: "A pragmatic paleontologist touring an almost complete theme park on an island in Central America is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
+    rating: 8.2,
+    releaseDate: "1993-06-11",
+    duration: 127,
+    director: "Steven Spielberg",
+    genre: ["Action", "Adventure", "Sci-Fi"],
+    cast: ["Sam Neill", "Laura Dern", "Jeff Goldblum"],
+    posterUrl: "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_.jpg",
+    imdbId: "tt0107290"
   },
   {
     title: "The Shining",
@@ -603,16 +603,16 @@ const sampleMovies = [
     imdbId: "tt0086879"
   },
   {
-    title: "Once Upon a Time in the West",
-    description: "A mysterious stranger with a harmonica joins forces with a notorious desperado to protect a beautiful widow from a ruthless assassin.",
-    rating: 8.5,
-    releaseDate: "1968-12-21",
-    duration: 165,
-    director: "Sergio Leone",
-    genre: ["Western"],
-    cast: ["Henry Fonda", "Charles Bronson", "Claudia Cardinale"],
-    posterUrl: "https://m.media-amazon.com/images/M/MV5BODQ3NDExOGYtMzI3Mi00NWRlLTkwNjAtNjc4MDgzZGJiZTA1XkEyXkFqcGdeQXVyMjUzOTY1NTc@._V1_.jpg",
-    imdbId: "tt0064116"
+    title: "The Grand Budapest Hotel",
+    description: "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge.",
+    rating: 8.1,
+    releaseDate: "2014-03-28",
+    duration: 99,
+    director: "Wes Anderson",
+    genre: ["Adventure", "Comedy", "Crime"],
+    cast: ["Ralph Fiennes", "F. Murray Abraham", "Mathieu Amalric"],
+    posterUrl: "https://m.media-amazon.com/images/M/MV5BMzM5NjUxOTEyMl5BMl5BanBnXkFtZTgwNjEyMDM0MDE@._V1_.jpg",
+    imdbId: "tt2278388"
   },
   {
     title: "Toy Story",
