@@ -1,8 +1,5 @@
 const mongoose = require('mongoose');
 
-// Disable command buffering globally
-mongoose.set('bufferCommands', false);
-
 let cached = global.mongoose;
 
 if (!cached) {
@@ -11,26 +8,24 @@ if (!cached) {
 
 async function connectDB() {
   if (cached.conn) {
+    console.log('Using cached connection');
     return cached.conn;
   }
 
   if (!cached.promise) {
-    const opts = {
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
-    };
-
-    cached.promise = mongoose.connect(process.env.MONGODB_URI, opts);
+    console.log('Creating new connection to:', process.env.MONGODB_URI?.substring(0, 30) + '...');
+    cached.promise = mongoose.connect(process.env.MONGODB_URI);
   }
 
   try {
     cached.conn = await cached.promise;
+    console.log('MongoDB connected successfully:', cached.conn.connection.readyState);
+    return cached.conn;
   } catch (e) {
+    console.error('MongoDB connection error:', e.message);
     cached.promise = null;
     throw e;
   }
-
-  return cached.conn;
 }
 
 module.exports = connectDB;
