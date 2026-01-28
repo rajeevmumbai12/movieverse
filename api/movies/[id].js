@@ -28,6 +28,9 @@ module.exports = async (req, res) => {
     }
 
     const Movie = mongoose.models.Movie;
+    const { id } = req.query;
+
+    if (req.method === 'GET') {
       const movie = await Movie.findById(id).lean();
 
       if (!movie) {
