@@ -1,5 +1,4 @@
 const { cache, CACHE_KEYS, generateCacheKey, clearMovieCache } = require('../config/cache');
-const { movieQueue, isQueueAvailable } = require('../queues/movieQueue');
 const { getModel } = require('../utils/modelLoader');
 
 // @desc    Get all movies with pagination, sorting, and search
@@ -101,7 +100,7 @@ exports.getMovie = async (req, res) => {
   }
 };
 
-// @desc    Create new movie (with queue for lazy insertion)
+// @desc    Create new movie
 // @route   POST /api/movies
 // @access  Private/Admin
 exports.createMovie = async (req, res) => {
@@ -112,34 +111,6 @@ exports.createMovie = async (req, res) => {
       createdBy: req.user._id
     };
 
-    // Try to use queue if available
-    console.log('Queue status - Available:', isQueueAvailable(), 'Queue exists:', !!movieQueue);
-    if (isQueueAvailable() && movieQueue) {
-      try {
-        const job = await movieQueue.add('create-movie', { movieData }, {
-          attempts: 3,
-          timeout: 10000
-        });
-
-        console.log(`Movie queued for creation: Job ID ${job.id}`);
-
-        // Don't wait for completion - true lazy insertion
-        // Job will be processed in background
-        clearMovieCache();
-
-        return res.status(202).json({
-          message: 'Movie creation queued successfully',
-          jobId: job.id,
-          queued: true,
-          status: 'Job will be processed in background'
-        });
-      } catch (queueError) {
-        console.log('Queue processing failed, using direct insertion');
-      }
-    }
-
-    // Direct insertion (if queue unavailable or failed)
-    console.log('Using direct database insertion');
     const movie = await Movie.create(movieData);
     clearMovieCache();
     res.status(201).json(movie);
